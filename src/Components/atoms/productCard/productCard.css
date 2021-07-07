@@ -1,0 +1,27 @@
+.product-card{
+    display: flex;
+    max-width: 300px;
+    padding: 12px 24px;
+    background-color:#F5F8FC;
+    color: black;
+    border-radius: 20px;
+    align-items: center;
+    margin: 5px;
+}
+.product-card > *:not(:first-child){
+    margin-left: 10px;
+}
+.product-card-img>img{
+    width: 50px;
+}
+.product-card-detail{
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+.product-card-text{
+    max-width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

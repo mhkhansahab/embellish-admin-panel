@@ -1,0 +1,23 @@
+.listed-text{
+    font-family: Poppins-SemiBold;
+    font-size: 20px;
+    margin: 10px 0;
+}
+.date-container{
+    justify-content: space-between;
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
+    padding: 24px 20px;
+}
+.day-block{
+    font-family: Poppins-SemiBold
+}
+.date-block{
+    font-family: Poppins-SemiBold;
+}
+@media screen and (max-width:768px) {
+    .date-container{
+        margin-top: 50px;
+    }
+}

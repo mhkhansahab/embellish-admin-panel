@@ -1,0 +1,19 @@
+.mobile-nav{
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    background-color: #fff;
+}
+
+@media screen and (max-width : 1028px) {
+ .mobile-nav{
+     display: flex;
+ }
+ .desktop-header{
+     display: none;
+ }
+}

@@ -1,0 +1,6 @@
+.whole-logo{
+    width: 100%;
+}
+.whole-logo > img{
+    width: 240px;
+}

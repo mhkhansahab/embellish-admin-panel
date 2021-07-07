@@ -1,0 +1,12 @@
+.banner-tiles{
+    max-height: 400px;
+    overflow-y: hidden;
+    width: 100%;
+}
+.banner-tiles::-webkit-scrollbar {
+    display: none;
+  }
+  .banner-tiles{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }

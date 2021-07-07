@@ -1,0 +1,12 @@
+.tile-btns-container{
+    margin-top: 5px;
+}
+.tile-btn:not(:first-child){
+    margin-left : 5px;
+}
+.tile-btn > img{
+    width: 24px;
+}
+.tile-btn{
+    cursor: pointer;
+}

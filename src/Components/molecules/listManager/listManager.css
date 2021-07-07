@@ -1,0 +1,67 @@
+.banner-container{
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 14px 0;
+}
+.management-nav{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.management-links{
+    font-size: 18px;
+    color: #8A8FA1;
+    font-family: Poppins-SemiBold;
+    margin-left: 20px;
+}
+.management-links-text{
+    margin-bottom: 7px;
+}
+.management-links-text:hover{
+    color: #6F8AE8;
+}
+
+.management-links-border{
+    display: none;
+    margin: 0 auto;
+    width: 20px;
+    background-color: #6F8AE8;
+    height: 4px;
+    border-radius: 20px;
+}
+.product{
+    margin-left: 40px;
+}
+.add-new-btn{
+    font-family: Poppins-SemiBold;
+    background-color: #6F8AE8;
+    padding: 10px 22px;
+    width: fit-content;
+    color: white;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width : 628px) {
+    .management-nav{
+        flex-direction: column;
+    }
+    .add-new-btn{
+        margin: 10px auto;
+        margin-bottom: 0;
+    }
+}
+@media screen and (max-width : 428px){
+   .management-links-text{
+       font-size: 12px;
+   }
+   .add-new-btn{
+    padding: 6px 70px;
+    }
+    .management-links{
+        margin: 0 10px;
+    }
+    
+}

@@ -1,0 +1,15 @@
+.product-tiles {
+  max-height: 400px;
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-tiles::-webkit-scrollbar {
+  display: none;
+}
+.product-tiles {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
