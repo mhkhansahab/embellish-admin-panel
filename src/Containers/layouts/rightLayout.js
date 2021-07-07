@@ -13,10 +13,10 @@ function rightLayout() {
         <Logo />
       </div>
       <Switch>
-        <Route path="/management">
+        <Route path="/embellish-admin-panel/management">
           <Management></Management>
         </Route>
-        <Route path="/">
+        <Route path="/embellish-admin-panel/">
           <Home></Home>
         </Route>
       </Switch>

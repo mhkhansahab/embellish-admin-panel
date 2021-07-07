@@ -9,7 +9,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 function navbar() {
   return (
     <div className="navbar">
-      <NavLink to="/" className="navlinks">
+      <NavLink to="/embellish-admin-panel/" className="navlinks">
         <Navigator text="Home">
           <HomeRoundedIcon style={{ fill: "#000" }}/>
         </Navigator>
@@ -19,7 +19,7 @@ function navbar() {
           <PollRoundedIcon style={{ fill: "#000" }}/>
         </Navigator>
       </NavLink>
-      <NavLink to="/management/banner" className="navlinks">
+      <NavLink to="/embellish-admin-panel/management/banner" className="navlinks">
         <Navigator text="Management">
           <SettingsIcon style={{ fill: "#000" }}/>
         </Navigator>

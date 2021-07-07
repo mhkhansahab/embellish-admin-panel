@@ -9,13 +9,13 @@ function listManager(props) {
     <div className="banner-container">
       <div className="management-nav flex center-2">
         <div className="flex center-2">
-        <NavLink to="/management/banner" style={{textDecoration:"none"}}>
+        <NavLink to="/embellish-admin-panel/management/banner" style={{textDecoration:"none"}}>
           <div className="management-links">
             <div className="management-links-text" style={props.isBanner ? {color:"#6F8AE8"}: null}>Manage Banner</div>
             <div className="management-links-border" style={props.isBanner ? {display:"flex"}: null}></div>
           </div>
         </NavLink>
-        <NavLink to="/management/product" style={{textDecoration:"none"}}>
+        <NavLink to="/embellish-admin-panel/management/product" style={{textDecoration:"none"}}>
           <div className="management-links product">
             <div className="management-links-text" style={props.isBanner ? null: {color:"#6F8AE8"}}>Manage Products</div>
             <div className="management-links-border" style={props.isBanner ? null: {display:"flex"}}></div>
@@ -26,10 +26,10 @@ function listManager(props) {
       </div>
 
       <Switch>
-        <Route path="/management/banner">
+        <Route path="/embellish-admin-panel/management/banner">
         <BannerTilesHolder modalController = {props.modalController}></BannerTilesHolder>
         </Route>
-        <Route path="/management/product">
+        <Route path="/embellish-admin-panel/management/product">
           <ProductTilesHolder modalController = {props.modalController}></ProductTilesHolder>
         </Route>
       </Switch>
