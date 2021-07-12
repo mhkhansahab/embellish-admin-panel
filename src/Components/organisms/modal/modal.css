@@ -43,7 +43,7 @@
     font-family: Poppins-SemiBold;
 }
 .input-field > input, select{
-    width: 93%;
+    width: 97%;
     padding: 10px;
     border-radius: 5px;
     outline: none;

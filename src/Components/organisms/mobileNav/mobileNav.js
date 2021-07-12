@@ -10,7 +10,7 @@ function mobileNav() {
     return (
         <div className="mobile-nav">
             <NavLink to="/embellish-admin-panel/"><HomeRoundedIcon style={{ fill: "#000" }}/></NavLink>
-            <NavLink to="#"><PollRoundedIcon style={{ fill: "#000" }}/></NavLink>
+            <NavLink to="/embellish-admin-panel/newsletter"><PollRoundedIcon style={{ fill: "#000" }}/></NavLink>
             <NavLink to="/embellish-admin-panel/management/banner"><SettingsIcon style={{ fill: "#000" }}/></NavLink>
 
         </div>

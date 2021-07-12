@@ -1,11 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./home.css";
 import Header from "./../../Components/organisms/header/header";
 import Carousel from "../../Components/organisms/carousel/carousel";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import { getBanners } from "../../Store/action/actions";
 
 function Home() {
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBanners());
+  }, [])
+  
   const banners = useSelector((state)=>state.banners);
 
   const dayCreator = () => {

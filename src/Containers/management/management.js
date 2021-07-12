@@ -1,35 +1,40 @@
 import React from 'react';
-import "./management.css";
 import Header from "./../../Components/organisms/header/header";
 import ListManager from "./../../Components/molecules/listManager/listManager";
 import Modal from "./../../Components/organisms/modal/modal";
 import {useState} from "react";
 import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {setProductModal, setBannerModal, modalCleaner, editStatusChanger, getProducts} from "./../../Store/action/actions";
+import {useDispatch} from "react-redux";
+import {setProductModal, setBannerModal, modalCleaner, editStatusChanger, getProducts, setCategoryModal} from "./../../Store/action/actions";
 import {useEffect} from "react";
 
 function Management(props) {
-    const isBanner = props.location.pathname.includes("banner");
+    const dispatch = useDispatch();
+    const location = props.location.pathname;
     const [showModal, setshowModal] = useState(false);
 
     useEffect(() => {
-        props.getProducts();
+        dispatch(getProducts());
     }, []);
 
 
     const modalController = (type, id, modal)=>{
         if(type === "add"){
             setshowModal(!showModal);
-            props.modalCleaner();
+            dispatch(modalCleaner());
         }else{
             if (modal === "product"){
-                props.setProductModal(id);
-                props.editStatusChanger(true);
+                dispatch(setProductModal(id));
+                dispatch(editStatusChanger(true));
                 setshowModal(!showModal);
-            }else{
-                props.setBannerModal(id);
-                props.editStatusChanger(true);
+            }else if(modal === "category"){
+                dispatch(setCategoryModal(id));
+                dispatch(editStatusChanger(true));
+                setshowModal(!showModal);
+            }
+            else{
+                dispatch(setBannerModal(id));
+                dispatch(editStatusChanger(true));
                 setshowModal(!showModal);
             }
                         
@@ -39,20 +44,12 @@ function Management(props) {
     return (
         <div className="management">
             <Header upperText="" lowerText="Management"></Header>
-            <ListManager modalController = {modalController}  isBanner={isBanner}></ListManager>
+            <ListManager modalController = {modalController}  location={location}></ListManager>
             {
-                showModal ? <Modal modalController = {modalController} isBanner={isBanner}></Modal> : null
+                showModal ? <Modal modalController = {modalController} location={location}></Modal> : null
             }
         </div>
     );
 }
 
-const mapDispatchToProps = {
-    setProductModal,
-    setBannerModal,
-    modalCleaner,
-    editStatusChanger,
-    getProducts
-}
-
-export default connect(null,mapDispatchToProps)(withRouter(Management));
+export default withRouter(Management);

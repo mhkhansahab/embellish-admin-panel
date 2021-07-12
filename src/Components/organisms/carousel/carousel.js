@@ -5,12 +5,12 @@ const carousel = (props) => {
   return (
     <div className="carousel-container-2">
       <Carousel fade>
-        {props.banners.map((banner) => {
+        {props.banners.map((banner, index) => {
           return (
-            <Carousel.Item>
+            <Carousel.Item key = {index}>
               <img
                 className="d-block w-100"
-                src={banner.link}
+                src={banner.img}
                 alt="Slide"
               />
             </Carousel.Item>

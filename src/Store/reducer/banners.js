@@ -1,10 +1,6 @@
 import { ADD_BANNER, DELETE_BANNER, GET_ALL_BANNERS, UPDATE_BANNER } from "./../action/actions";
 
-const initialState = [
-    {link : "https://embellish-lukhnow.web.app/static/media/banner4.afd7f69b.jpg", _id : "1"},
-    {link : "https://embellish-lukhnow.web.app/static/media/banner4.afd7f69b.jpg", _id : "2"},
-    {link : "https://embellish-lukhnow.web.app/static/media/banner4.afd7f69b.jpg", _id : "3"}
-];
+const initialState = [];
 
 const reducer = (state = initialState , actions)=>{
     const {type ,payload} = actions;

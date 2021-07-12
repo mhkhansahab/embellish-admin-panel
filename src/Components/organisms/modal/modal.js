@@ -3,7 +3,7 @@ import "./modal.css";
 import close from "./../../../Assets/general/close.svg";
 import coin from "./../../../Assets/general/coin.svg";
 import { useState, useEffect } from "react";
-import { useSelector, connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   createBanner,
   createProduct,
@@ -11,19 +11,25 @@ import {
   updateBanner,
   updateProduct,
   editStatusChanger,
+  createCategory,
+  updateCategory,
 } from "./../../../Store/action/actions";
 import Swal from "sweetalert2";
 import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
 
 function Modal(props) {
+  const dispatch = useDispatch();
   const [banner, setbanner] = useState({ link: "" });
+  const [category, setcategory] = useState({ name: "", link: "" });
   const [product, setproduct] = useState({
     name: "",
     description: "",
     image: "",
     category: "abc",
     quantity: "",
-    price: "",
+    price_pkr: "",
+    price_ind: "",
+    price_uae: "",
     color: "",
     size: "",
     extraImage: "",
@@ -39,7 +45,7 @@ function Modal(props) {
     if (data.length !== 0) {
       const element = data[0];
       if (props.isBanner) {
-        setbanner({ link: element.link });
+        setbanner({ link: element.img });
       } else {
         setproduct({
           name: element.name,
@@ -47,7 +53,9 @@ function Modal(props) {
           image: element.image,
           category: element.category,
           quantity: element.quantity,
-          price: element.price,
+          price_pkr: element.price_pkr,
+          price_ind: element.price_ind,
+          price_uae: element.price_uae,
           color: "",
           size: "",
           extraImage: "",
@@ -69,10 +77,10 @@ function Modal(props) {
     const input = { ...banner };
     if (input.link !== "") {
       try {
-        props.createBanner(input);
+        dispatch(createBanner({ banner_img: input.link }));
         setbanner({ link: "" });
         props.modalController("add");
-        props.modalCleaner();
+        dispatch(modalCleaner());
       } catch {
         Swal.fire({
           icon: "error",
@@ -89,11 +97,11 @@ function Modal(props) {
     const input = { ...banner };
     if (input.link !== "") {
       try {
-        props.updateBanner(input, data[0]._id);
+        dispatch(updateBanner({ banner_img: input.link }, data[0]._id));
         setbanner({ link: "" });
         props.modalController("add");
-        props.modalCleaner();
-        props.editStatusChanger(false);
+        dispatch(modalCleaner());
+        dispatch(editStatusChanger(false));
       } catch {
         Swal.fire({
           icon: "error",
@@ -103,55 +111,6 @@ function Modal(props) {
       }
     } else {
       Swal.fire("No URL Added");
-    }
-  };
-
-  const productHandler = (e, type) => {
-    if (type === "name") {
-      setproduct({
-        ...product,
-        name: e.target.value,
-      });
-    } else if (type === "price") {
-      setproduct({
-        ...product,
-        price: e.target.value,
-      });
-    } else if (type === "link") {
-      setproduct({
-        ...product,
-        image: e.target.value,
-      });
-    } else if (type === "description") {
-      setproduct({
-        ...product,
-        description: e.target.value,
-      });
-    } else if (type === "quantity") {
-      setproduct({
-        ...product,
-        quantity: e.target.value,
-      });
-    } else if (type === "size") {
-      setproduct({
-        ...product,
-        size: e.target.value,
-      });
-    } else if (type === "color") {
-      setproduct({
-        ...product,
-        color: e.target.value,
-      });
-    } else if (type === "extraImage") {
-      setproduct({
-        ...product,
-        extraImage: e.target.value,
-      });
-    } else {
-      setproduct({
-        ...product,
-        category: e.target.value,
-      });
     }
   };
 
@@ -208,26 +167,89 @@ function Modal(props) {
     setproduct(obj);
   };
 
+  const productHandler = (e, type) => {
+    if (type === "name") {
+      setproduct({
+        ...product,
+        name: e.target.value,
+      });
+    } else if (type === "price_pkr") {
+      setproduct({
+        ...product,
+        price_pkr: e.target.value,
+      });
+    } else if (type === "price_ind") {
+      setproduct({
+        ...product,
+        price_ind: e.target.value,
+      });
+    } else if (type === "price_uae") {
+      setproduct({
+        ...product,
+        price_uae: e.target.value,
+      });
+    } else if (type === "link") {
+      setproduct({
+        ...product,
+        image: e.target.value,
+      });
+    } else if (type === "description") {
+      setproduct({
+        ...product,
+        description: e.target.value,
+      });
+    } else if (type === "quantity") {
+      setproduct({
+        ...product,
+        quantity: e.target.value,
+      });
+    } else if (type === "size") {
+      setproduct({
+        ...product,
+        size: e.target.value,
+      });
+    } else if (type === "color") {
+      setproduct({
+        ...product,
+        color: e.target.value,
+      });
+    } else if (type === "extraImage") {
+      setproduct({
+        ...product,
+        extraImage: e.target.value,
+      });
+    } else {
+      setproduct({
+        ...product,
+        category: e.target.value,
+      });
+    }
+  };
+
   const addProduct = () => {
     const input = { ...product };
     if (
       input.name !== "" &&
       input.image !== "" &&
-      input.price !== "" &&
+      input.price_pkr !== "" &&
+      input.price_ind !== "" &&
+      input.price_uae !== "" &&
       input.description !== "" &&
       input.quantity !== "" &&
       input.sizes.length >= 0 &&
       input.colors.length >= 0
     ) {
       try {
-        props.createProduct(input);
+        dispatch(createProduct(input));
         setproduct({
           name: "",
           description: "",
           image: "",
           category: "",
           quantity: "",
-          price: "",
+          price_pkr: "",
+          price_ind: "",
+          price_uae: "",
           color: "",
           size: "",
           extraImage: "",
@@ -236,7 +258,7 @@ function Modal(props) {
           extraImages: [],
         });
         props.modalController("add");
-        props.modalCleaner();
+        dispatch(modalCleaner());
       } catch {
         Swal.fire({
           icon: "error",
@@ -254,22 +276,24 @@ function Modal(props) {
     if (
       input.name !== "" &&
       input.image !== "" &&
-      input.price !== "" &&
+      input.price_pkr !== "" &&
+      input.price_ind !== "" &&
+      input.price_uae !== "" &&
       input.description !== "" &&
       input.quantity !== "" &&
       input.sizes.length >= 0 &&
       input.colors.length >= 0
-    )
-     {
+    ) {
       try {
-        props.updateProduct(input, data[0]._id);
+        dispatch(updateProduct(input, data[0]._id));
         setproduct({
           name: "",
           description: "",
           image: "",
-          category: "",
           quantity: "",
-          price: "",
+          price_pkr: "",
+          price_ind: "",
+          price_uae: "",
           color: "",
           size: "",
           extraImage: "",
@@ -278,8 +302,8 @@ function Modal(props) {
           extraImages: [],
         });
         props.modalController("add");
-        props.modalCleaner();
-        props.editStatusChanger(false);
+        dispatch(modalCleaner());
+        dispatch(editStatusChanger(false));
       } catch {
         Swal.fire({
           icon: "error",
@@ -292,6 +316,65 @@ function Modal(props) {
     }
   };
 
+  const categoryHandler = (e, type) => {
+    const input = { ...category };
+    if (type === "name") {
+      input.name = e.target.value;
+      setcategory(input);
+    } else {
+      input.link = e.target.value;
+      setcategory(input);
+    }
+  };
+
+  const addCategory = () => {
+    const input = { ...category };
+    if (input.link !== "" && input.name !== "") {
+      try {
+        dispatch(
+          createCategory({ cat_name: category.name.trim(), cat_img: category.link.trim() })
+        );
+        setcategory({ name: "", link: "" });
+        props.modalController("add");
+        dispatch(modalCleaner());
+      } catch {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+    } else {
+      Swal.fire("No URL Added");
+    }
+  };
+
+  const editCategory = () => {
+    const input = { ...category };
+    if (input.link !== "" && input.name !== "") {
+      try {
+        dispatch(
+          updateCategory(
+            { cat_name: input.name, cat_img: input.link },
+            data[0]._id
+          )
+        );
+        setcategory({ name: "", link: "" });
+        props.modalController("add");
+        dispatch(modalCleaner());
+        dispatch(editStatusChanger(false));
+      } catch {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+    } else {
+      Swal.fire("No URL Added");
+    }
+  };
+
   const bannerModal = () => {
     return (
       <>
@@ -301,7 +384,7 @@ function Modal(props) {
             className="close-btn flex center-1 center-2"
             onClick={() => {
               props.modalController("add", "");
-              props.editStatusChanger(false);
+              dispatch(editStatusChanger(false));
             }}
           >
             <img src={close}></img>
@@ -331,7 +414,7 @@ function Modal(props) {
             className="close-btn flex center-1 center-2"
             onClick={() => {
               props.modalController("add", "");
-              props.editStatusChanger(false);
+              dispatch(editStatusChanger(false));
             }}
           >
             <img src={close}></img>
@@ -388,14 +471,36 @@ function Modal(props) {
             </select>
           </div>
 
-          <div className="input-label">PRICE (Single Unit)</div>
+          <div className="input-label">PRICE IN PKR(Single Unit)</div>
           <div className="input-field price-input">
             <img src={coin} alt="Coin"></img>
             <input
               type="number"
               placeholder="Eg. 4500"
-              value={product.price}
-              onChange={(e) => productHandler(e, "price")}
+              value={product.price_pkr}
+              onChange={(e) => productHandler(e, "price_pkr")}
+            ></input>
+          </div>
+
+          <div className="input-label">PRICE IN INR(Single Unit)</div>
+          <div className="input-field price-input">
+            <img src={coin} alt="Coin"></img>
+            <input
+              type="number"
+              placeholder="Eg. 4500"
+              value={product.price_ind}
+              onChange={(e) => productHandler(e, "price_ind")}
+            ></input>
+          </div>
+
+          <div className="input-label">PRICE IN UAED(Single Unit)</div>
+          <div className="input-field price-input">
+            <img src={coin} alt="Coin"></img>
+            <input
+              type="number"
+              placeholder="Eg. 4500"
+              value={product.price_uae}
+              onChange={(e) => productHandler(e, "price_uae")}
             ></input>
           </div>
 
@@ -492,31 +597,85 @@ function Modal(props) {
     );
   };
 
+  const categoryModal = () => {
+    return (
+      <>
+        <div className="modal-header flex">
+          <div className="modal-text">Add New Category</div>
+          <div
+            className="close-btn flex center-1 center-2"
+            onClick={() => {
+              props.modalController("add", "");
+              dispatch(editStatusChanger(false));
+            }}
+          >
+            <img src={close}></img>
+          </div>
+        </div>
+        <div className="modal-fields">
+          <div className="input-label">ENTER CATEGORY NAME</div>
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="Write here..."
+              value={category.name}
+              onChange={(e) => categoryHandler(e, "name")}
+            ></input>
+          </div>
+          <div className="input-label">ENTER IMAGE URL</div>
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="Write here..."
+              value={category.link}
+              onChange={(e) => categoryHandler(e, "link")}
+            ></input>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const filterLocationToShowModal = (location) => {
+    if (location.includes("product")) {
+      return productModal();
+    } else if (location.includes("banner")) {
+      return bannerModal();
+    } else {
+      return categoryModal();
+    }
+  };
+
+  const filterLocationToShowButton = (location) => {
+    if (location.includes("product")) {
+      return (
+        <div className="save-btn" onClick={isEdit ? editProduct : addProduct}>
+          Save
+        </div>
+      );
+    } else if (location.includes("banner")) {
+      return (
+        <div className="save-btn" onClick={isEdit ? editBanner : addBanner}>
+          Save
+        </div>
+      );
+    } else {
+      return (
+        <div className="save-btn" onClick={isEdit ? editCategory : addCategory}>
+          Save
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="modal flex center-1 center-2">
       <div className="fields-container">
-        {props.isBanner ? bannerModal() : productModal()}
-        {props.isBanner ? (
-          <div className="save-btn" onClick={isEdit ? editBanner : addBanner}>
-            Save
-          </div>
-        ) : (
-          <div className="save-btn" onClick={isEdit ? editProduct : addProduct}>
-            Save
-          </div>
-        )}
+        {filterLocationToShowModal(props.location)}
+        {filterLocationToShowButton(props.location)}
       </div>
     </div>
   );
 }
 
-const mapDispatchToProps = {
-  createBanner,
-  createProduct,
-  modalCleaner,
-  updateBanner,
-  updateProduct,
-  editStatusChanger,
-};
-
-export default connect(null, mapDispatchToProps)(Modal);
+export default Modal;

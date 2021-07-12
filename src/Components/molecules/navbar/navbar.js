@@ -14,8 +14,8 @@ function navbar() {
           <HomeRoundedIcon style={{ fill: "#000" }}/>
         </Navigator>
       </NavLink>
-      <NavLink to="#" className="navlinks">
-        <Navigator text="Analytics">
+      <NavLink to="/embellish-admin-panel/newsletter" className="navlinks">
+        <Navigator text="Newsletter">
           <PollRoundedIcon style={{ fill: "#000" }}/>
         </Navigator>
       </NavLink>

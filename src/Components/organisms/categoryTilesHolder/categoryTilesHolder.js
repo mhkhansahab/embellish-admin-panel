@@ -1,13 +1,11 @@
 import React, {useEffect} from 'react';
-import "./bannerTilesHolder.css";
-import BannerTile from "./../../atoms/bannerTile/bannerTile";
-import {useSelector, connect, useDispatch} from "react-redux";
-import { deleteBanner , getBanners} from "./../../../Store/action/actions"
+import { getBanners } from '../../../Store/action/actions';
+import CategoryTile from '../../atoms/categoryTile/categoryTile';
+import {useSelector, useDispatch} from "react-redux";
 
-
-function BannerTilesHolder(props) {
-
+function CategoryTilesHolder(props) {
     const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(getBanners());
     }, [])
@@ -23,23 +21,18 @@ function BannerTilesHolder(props) {
             {
                 bannersData ? bannersData.map((item)=>{
                     return(
-                    <BannerTile 
+                    <CategoryTile 
                     image={item.img} 
                     link={item.img} 
                     key = {item._id}
                     id = {item._id} 
                     deleteFunc={()=>bannerRemover(item._id)}
                     modalController = {props.modalController}
-                    ></BannerTile>);
+                    ></CategoryTile>);
                 }) : null
             }
         </div>
     );
 }
 
-
-const mapDispatchToProps = {
-    deleteBanner
-}
-
-export default connect(null,mapDispatchToProps)(BannerTilesHolder);
+export default CategoryTilesHolder;

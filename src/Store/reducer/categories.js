@@ -1,15 +1,26 @@
-import { GET_ALL_CATEGORIES } from "./../action/actions";
+import {
+  GET_ALL_CATEGORIES,
+  DELETE_CATEGORY,
+  ADD_CATEGORY,
+  UPDATE_CATEGORY,
+} from "./../action/actions";
 
 const initialState = [];
 
-const reducer = (state = initialState , actions)=>{
-    const {type ,payload} = actions;
-    switch(type){
-        case GET_ALL_CATEGORIES:
-            return payload;
-        default:
-    }
-    return state;
-}
+const reducer = (state = initialState, actions) => {
+  const { type, payload } = actions;
+  switch (type) {
+    case GET_ALL_CATEGORIES:
+      return payload;
+    case ADD_CATEGORY:
+      return payload;
+    case UPDATE_CATEGORY:
+      return payload;
+    case DELETE_CATEGORY:
+      return payload;
+    default:
+  }
+  return state;
+};
 
 export default reducer;
