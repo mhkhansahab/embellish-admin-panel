@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/embellish-admin-panel/static/css/main.9a369515.chunk.css",
-    "main.js": "/embellish-admin-panel/static/js/main.c6030f6e.chunk.js",
-    "main.js.map": "/embellish-admin-panel/static/js/main.c6030f6e.chunk.js.map",
-    "runtime-main.js": "/embellish-admin-panel/static/js/runtime-main.250fc62a.js",
-    "runtime-main.js.map": "/embellish-admin-panel/static/js/runtime-main.250fc62a.js.map",
-    "static/js/2.f508831c.chunk.js": "/embellish-admin-panel/static/js/2.f508831c.chunk.js",
-    "static/js/2.f508831c.chunk.js.map": "/embellish-admin-panel/static/js/2.f508831c.chunk.js.map",
-    "static/js/3.5a9d9683.chunk.js": "/embellish-admin-panel/static/js/3.5a9d9683.chunk.js",
-    "static/js/3.5a9d9683.chunk.js.map": "/embellish-admin-panel/static/js/3.5a9d9683.chunk.js.map",
+    "main.css": "/embellish-admin-panel/static/css/main.39ddb1d4.chunk.css",
+    "main.js": "/embellish-admin-panel/static/js/main.c6aa74d0.chunk.js",
+    "main.js.map": "/embellish-admin-panel/static/js/main.c6aa74d0.chunk.js.map",
+    "runtime-main.js": "/embellish-admin-panel/static/js/runtime-main.64db37b9.js",
+    "runtime-main.js.map": "/embellish-admin-panel/static/js/runtime-main.64db37b9.js.map",
+    "static/js/2.d424903b.chunk.js": "/embellish-admin-panel/static/js/2.d424903b.chunk.js",
+    "static/js/2.d424903b.chunk.js.map": "/embellish-admin-panel/static/js/2.d424903b.chunk.js.map",
+    "static/js/3.578e5c98.chunk.js": "/embellish-admin-panel/static/js/3.578e5c98.chunk.js",
+    "static/js/3.578e5c98.chunk.js.map": "/embellish-admin-panel/static/js/3.578e5c98.chunk.js.map",
     "index.html": "/embellish-admin-panel/index.html",
-    "static/css/main.9a369515.chunk.css.map": "/embellish-admin-panel/static/css/main.9a369515.chunk.css.map",
-    "static/js/2.f508831c.chunk.js.LICENSE.txt": "/embellish-admin-panel/static/js/2.f508831c.chunk.js.LICENSE.txt",
+    "static/css/main.39ddb1d4.chunk.css.map": "/embellish-admin-panel/static/css/main.39ddb1d4.chunk.css.map",
+    "static/js/2.d424903b.chunk.js.LICENSE.txt": "/embellish-admin-panel/static/js/2.d424903b.chunk.js.LICENSE.txt",
     "static/media/fonts.css": "/embellish-admin-panel/static/media/Poppins-SemiBold.cce5625b.ttf",
     "static/media/attachment.948f6a96.svg": "/embellish-admin-panel/static/media/attachment.948f6a96.svg",
     "static/media/close.783cdb6e.svg": "/embellish-admin-panel/static/media/close.783cdb6e.svg",
@@ -21,9 +21,9 @@
     "static/media/logo-black.20a5b03a.png": "/embellish-admin-panel/static/media/logo-black.20a5b03a.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.250fc62a.js",
-    "static/js/2.f508831c.chunk.js",
-    "static/css/main.9a369515.chunk.css",
-    "static/js/main.c6030f6e.chunk.js"
+    "static/js/runtime-main.64db37b9.js",
+    "static/js/2.d424903b.chunk.js",
+    "static/css/main.39ddb1d4.chunk.css",
+    "static/js/main.c6aa74d0.chunk.js"
   ]
 }
