@@ -13,7 +13,8 @@ const reducer = (state = initialState, actions) => {
     case GET_ALL_CATEGORIES:
       return payload;
     case ADD_CATEGORY:
-      return payload;
+      const category = [...state, payload];
+      return category;
     case UPDATE_CATEGORY:
       return payload;
     case DELETE_CATEGORY:

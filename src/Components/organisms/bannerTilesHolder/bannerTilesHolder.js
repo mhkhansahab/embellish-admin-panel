@@ -1,19 +1,16 @@
 import React, {useEffect} from 'react';
 import "./bannerTilesHolder.css";
 import BannerTile from "./../../atoms/bannerTile/bannerTile";
-import {useSelector, connect, useDispatch} from "react-redux";
-import { deleteBanner , getBanners} from "./../../../Store/action/actions"
+import {useSelector, useDispatch} from "react-redux";
+import { deleteBanner } from "./../../../Store/action/actions"
 
 
 function BannerTilesHolder(props) {
 
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getBanners());
-    }, [])
     
     const bannerRemover = (id)=>{
-        props.deleteBanner({banner_id: id});
+        dispatch(deleteBanner({banner_id: id}));
     }
 
     const bannersData = useSelector(state => state.banners);
@@ -38,8 +35,4 @@ function BannerTilesHolder(props) {
 }
 
 
-const mapDispatchToProps = {
-    deleteBanner
-}
-
-export default connect(null,mapDispatchToProps)(BannerTilesHolder);
+export default BannerTilesHolder;

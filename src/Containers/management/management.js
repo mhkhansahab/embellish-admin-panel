@@ -5,7 +5,7 @@ import Modal from "./../../Components/organisms/modal/modal";
 import {useState} from "react";
 import {withRouter} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {setProductModal, setBannerModal, modalCleaner, editStatusChanger, getProducts, setCategoryModal} from "./../../Store/action/actions";
+import {setProductModal, setBannerModal, modalCleaner, editStatusChanger, getProducts, setCategoryModal, getAllCategories, getBanners} from "./../../Store/action/actions";
 import {useEffect} from "react";
 
 function Management(props) {
@@ -15,6 +15,8 @@ function Management(props) {
 
     useEffect(() => {
         dispatch(getProducts());
+        dispatch(getAllCategories());
+        dispatch(getBanners());
     }, []);
 
 

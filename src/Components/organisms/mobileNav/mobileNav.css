@@ -8,7 +8,9 @@
     height: 50px;
     background-color: #fff;
 }
-
+.mobile-logout{
+    cursor: pointer;
+}
 @media screen and (max-width : 1028px) {
  .mobile-nav{
      display: flex;

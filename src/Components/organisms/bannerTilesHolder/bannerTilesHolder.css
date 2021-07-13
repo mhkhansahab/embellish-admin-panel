@@ -1,6 +1,6 @@
 .banner-tiles{
     max-height: 400px;
-    overflow-y: hidden;
+    overflow-y: auto;
     width: 100%;
 }
 .banner-tiles::-webkit-scrollbar {

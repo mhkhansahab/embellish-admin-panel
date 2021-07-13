@@ -13,7 +13,7 @@ function CategoryTile(props) {
           <span className="attachment-btn">
             <img src={attachmentButton} alt=""></img>
           </span>
-          <span className="attachment-text">{props.link}</span>
+          <span className="attachment-text">{props.name}</span>
         </span>
         <span>
           <TileButtons

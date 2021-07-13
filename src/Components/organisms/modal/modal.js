@@ -25,7 +25,7 @@ function Modal(props) {
     name: "",
     description: "",
     image: "",
-    category: "abc",
+    category: "",
     quantity: "",
     price_pkr: "",
     price_ind: "",
@@ -44,9 +44,10 @@ function Modal(props) {
   useEffect(() => {
     if (data.length !== 0) {
       const element = data[0];
-      if (props.isBanner) {
+      if (props.location.includes("banner")) {
         setbanner({ link: element.img });
-      } else {
+      }
+      else if(props.location.includes("product")){
         setproduct({
           name: element.name,
           description: element.description,
@@ -63,6 +64,8 @@ function Modal(props) {
           colors: element.colors,
           extraImages: element.more_images,
         });
+      }else{
+        setcategory({ name: element.name, link: element.img });
       }
     }
   }, []);
@@ -97,7 +100,7 @@ function Modal(props) {
     const input = { ...banner };
     if (input.link !== "") {
       try {
-        dispatch(updateBanner({ banner_img: input.link }, data[0]._id));
+        dispatch(updateBanner({ banner_img: input.link , banner_id: data[0]._id}));
         setbanner({ link: "" });
         props.modalController("add");
         dispatch(modalCleaner());
@@ -354,10 +357,7 @@ function Modal(props) {
     if (input.link !== "" && input.name !== "") {
       try {
         dispatch(
-          updateCategory(
-            { cat_name: input.name, cat_img: input.link },
-            data[0]._id
-          )
+          updateCategory({ cat_name: input.name, cat_img: input.link , cat_value: data[0].value, cat_id : data[0]._id})
         );
         setcategory({ name: "", link: "" });
         props.modalController("add");
@@ -458,12 +458,12 @@ function Modal(props) {
               type="text"
               onChange={(e) => productHandler(e, "categories")}
             >
-              <option disabled value="none">
+              <option value="none">
                 Select a Category
               </option>
               {categories.map((item) => {
                 return (
-                  <option key={item._id} value={item._id}>
+                  <option key={item._id} value={item.value}>
                     {item.name}
                   </option>
                 );

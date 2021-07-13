@@ -14,6 +14,7 @@ textarea{
     padding: 10px 20px;
     overflow-y : auto;
     max-height: 300px;
+    min-height: 200px;
 }
 textarea::-webkit-scrollbar {
     display: none;

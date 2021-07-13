@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { getBanners } from '../../../Store/action/actions';
+import { deleteCategory, getAllCategories} from '../../../Store/action/actions';
 import CategoryTile from '../../atoms/categoryTile/categoryTile';
 import {useSelector, useDispatch} from "react-redux";
 
@@ -7,26 +7,26 @@ function CategoryTilesHolder(props) {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        dispatch(getBanners());
+        dispatch(getAllCategories());
     }, [])
     
-    const bannerRemover = (id)=>{
-        props.deleteBanner({banner_id: id});
+    const categoryRemover = (id)=>{
+        dispatch(deleteCategory({category_id: id}));
     }
 
-    const bannersData = useSelector(state => state.banners);
+    const categoriesData = useSelector(state => state.categories);
 
     return (
         <div className="banner-tiles">
             {
-                bannersData ? bannersData.map((item)=>{
+                categoriesData ? categoriesData.map((item)=>{
                     return(
                     <CategoryTile 
                     image={item.img} 
-                    link={item.img} 
+                    name={item.name} 
                     key = {item._id}
                     id = {item._id} 
-                    deleteFunc={()=>bannerRemover(item._id)}
+                    deleteFunc={()=>categoryRemover(item._id)}
                     modalController = {props.modalController}
                     ></CategoryTile>);
                 }) : null
