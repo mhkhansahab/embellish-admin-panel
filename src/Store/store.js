@@ -5,6 +5,7 @@ import bannersReducer from "./reducer/banners";
 import categoriesReducer from "./reducer/categories";
 import modalReducer from "./reducer/modal";
 import userReducer from "./reducer/user";
+import orderReducer from "./reducer/orders";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     banners : bannersReducer,
     categories : categoriesReducer,
     modal : modalReducer,
-    user: userReducer
+    user: userReducer,
+    orders : orderReducer
 })
 
 export default configureStore({

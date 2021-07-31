@@ -1,0 +1,12 @@
+.order-nav-links{
+    justify-content: flex-start;
+    width: 100%;
+    margin: 10px 20px;
+}
+.order-tiles-holder {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }

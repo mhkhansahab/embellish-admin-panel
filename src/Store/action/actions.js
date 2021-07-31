@@ -21,6 +21,9 @@ export const EDIT_STATUS_CHANGER = "EDIT_STATUS_CHANGER";
 export const SET_USER = "SET_USER";
 export const DELETE_USER = "DELETE_USER";
 
+export const SET_PENDING_ORDERS = "SET_PENDING_ORDERS";
+export const SET_COMPLETED_ORDERS = "SET_COMPLETED_ORDERS";
+
 const baseURL = "https://embellish.herokuapp.com/";
 
 export const getProducts = () => async (dispatch) => {
@@ -102,7 +105,7 @@ export const updateProduct = (data, id) => async (dispatch, getState) => {
   tempData.username = user.username;
   tempData.password = user.password;
   tempData.more_images = tempData.extraImages;
-  
+
   try {
     const fetchData = {
       headers: {
@@ -401,10 +404,11 @@ export const editStatusChanger = (status) => (dispatch) => {
   });
 };
 
-export const sendNewsletter = (data) => async () => {
+export const sendNewsletter = (data) => async (dispatch, getState) => {
   const tempData = { ...data };
-  tempData.username = "admin_user135";
-  tempData.password = "admin_password_embellish";
+  const user = getState().user.currentUser;
+  tempData.username = user.username;
+  tempData.password = user.password;
 
   try {
     const fetchData = {
@@ -457,3 +461,95 @@ export const signOut = () => (dispatch) => {
     type: DELETE_USER,
   });
 };
+
+export const getPendingOrders = () => async (dispatch, getState) => {
+  const user = getState().user.currentUser;
+  const tempData = {
+    username: user.username,
+    password: user.password,
+  };
+
+  try {
+    const fetchData = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(tempData),
+    };
+    const promise = await fetch(baseURL + "admin/pending_order", fetchData);
+    const orders = await promise.json();
+    
+    dispatch({
+      type: SET_PENDING_ORDERS,
+      payload: orders.orders,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCompletedOrders = () => async (dispatch, getState) => {
+  const user = getState().user.currentUser;
+  const tempData = {
+    username: user.username,
+    password: user.password,
+  };
+
+  try {
+    const fetchData = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(tempData),
+    };
+    
+    const promise = await fetch(baseURL + "admin/completed_order", fetchData);
+    const orders = await promise.json();
+    
+    dispatch({
+      type: SET_COMPLETED_ORDERS,
+      payload: orders.orders,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const markAsCompleted = (data)=> async (dispatch, getState) => {
+  const user = getState().user.currentUser;
+  const tempData = {
+    ...data,
+    username: user.username,
+    password: user.password,
+  };
+
+  try {
+    const fetchData = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(tempData),
+    };
+    
+    const promise = await fetch(baseURL + "admin/order_status", fetchData);
+    const orders = await promise.json();
+
+    const promise2 = await fetch(baseURL + (tempData.order_status ? "admin/completed_order" : "admin/pending_order"), fetchData);
+    const orders2 = await promise2.json();
+    
+    dispatch({
+      type: tempData.order_status ? SET_PENDING_ORDERS : SET_COMPLETED_ORDERS,
+      payload: orders.orders,
+    });
+
+    dispatch({
+      type: tempData.order_status ? SET_COMPLETED_ORDERS : SET_PENDING_ORDERS,
+      payload: orders2.orders,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}

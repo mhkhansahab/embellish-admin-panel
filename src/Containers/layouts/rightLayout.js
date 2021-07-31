@@ -5,6 +5,7 @@ import "./../../Styles/media-queries/layout.css";
 import Home from "./../home/home";
 import Management from "./../management/management";
 import Newsletter from "../newsletter/newsletter";
+import Orders from "./../orders/orders";
 import Logo from "./../../Components/atoms/logo/logo";
 
 function rightLayout() {
@@ -19,6 +20,9 @@ function rightLayout() {
         </Route>
         <Route path="/embellish-admin-panel/newsletter">
           <Newsletter/>
+        </Route>
+        <Route path="/embellish-admin-panel/orders">
+          <Orders/>
         </Route>
         <Route path="/embellish-admin-panel/">
           <Home/>

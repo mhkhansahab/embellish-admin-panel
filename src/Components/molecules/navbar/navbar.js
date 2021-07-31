@@ -19,6 +19,11 @@ function navbar() {
           <PollRoundedIcon style={{ fill: "#000" }}/>
         </Navigator>
       </NavLink>
+      <NavLink to="/embellish-admin-panel/orders/pending" className="navlinks">
+        <Navigator text="Orders">
+          <SettingsIcon style={{ fill: "#000" }}/>
+        </Navigator>
+      </NavLink>
       <NavLink to="/embellish-admin-panel/management/banner" className="navlinks">
         <Navigator text="Management">
           <SettingsIcon style={{ fill: "#000" }}/>

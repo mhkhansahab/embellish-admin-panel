@@ -25,3 +25,22 @@
     overflow: hidden;
     white-space: nowrap;
 }
+.fulfilled-btn{
+    background-color: #6F8AE8;
+    cursor: pointer;
+    color: #fff;
+    width: 100%;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.fulfilled-btn:hover{
+    background-color: rgb(216, 12, 12);
+}
+.order-card{
+    width: fit-content;
+}
